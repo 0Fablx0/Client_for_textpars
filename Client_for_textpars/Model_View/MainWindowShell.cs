@@ -53,18 +53,21 @@ namespace Client_for_textpars.Model_View
         {
             buttonSearchEnableState = false;
             _parsText.Clear();
-
-            (List<int> corectID,List<string> wrongID) parsIDResult = Logic.parsInputID(_inputID.ToString());
-            wrongID = string.Join(",", parsIDResult.wrongID); ;
+            (List<int> corectID, List<string> wrongID) parsIDResult = Logic.parsInputID(_inputID.ToString());
+            if (parsIDResult.wrongID.Count > 0) { MessageBox.Show("Были введены некорректные ID"); };
+            wrongID = string.Join(",", parsIDResult.wrongID);
             List<string> Text = await client.getTextListFromServerAsync(parsIDResult.corectID);
             
 
             foreach (var x in Text)
             {
-                ParsedText parsedTextUnit = new ParsedText();
-                parsedTextUnit.Text = x;
-                parsedTextUnit.countWords=Logic.getCountWords(x);
-                parsedTextUnit.countVowelLetter = Logic.getCountVowelLetter(x);
+                ParsedText parsedTextUnit = new ParsedText
+                {
+                    Text = x,
+                    countWords = Logic.getCountWords(x),
+                    countVowelLetter = Logic.getCountVowelLetter(x)
+                };
+
                 _parsText.Add(parsedTextUnit);
             }
             buttonSearchEnableState = true;

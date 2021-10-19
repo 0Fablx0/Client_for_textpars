@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Client_for_textpars.Controller
 {
@@ -18,15 +19,18 @@ namespace Client_for_textpars.Controller
             {
                 TextModel text = null;
 
-                HttpRequestMessage request = new HttpRequestMessage();
-                request.Method = HttpMethod.Get;
+                HttpRequestMessage request = new HttpRequestMessage { Method = HttpMethod.Get };
                 request.Headers.Add("TMG-Api-Key", "0J/RgNC40LLQtdGC0LjQutC4IQ==");
                 request.RequestUri = new Uri(uri + textID);
 
                 HttpResponseMessage response = await client.SendAsync(request);
                 if (response.IsSuccessStatusCode) text = await response.Content.ReadAsAsync<TextModel>();
+                else
+                {
+                    MessageBox.Show("Error : " + (int)response.StatusCode + " ReasonPhrase : " + response.ReasonPhrase);
+                }
 
-               return text.text;
+               return text?.text;
             }
         }
 
@@ -36,7 +40,7 @@ namespace Client_for_textpars.Controller
             foreach (var x in textIdList)
             {
                 string text = await APIGetText(x);
-                textList.Add(text);
+                if (text != null) textList.Add(text);
             }
 
             return textList;

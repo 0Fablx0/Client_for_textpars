@@ -8,13 +8,13 @@ namespace Client_for_textpars
 {
     static internal class Logic
     {
-        /// <summary>
-        /// Function return List of int - corect Id
-        /// and List of string - wrong id
-        /// </summary>
+        
         internal static (List<int>, List<string>) parsInputID (string inputID)
         {
-            
+            /// <summary>
+            /// Function return List of int - corect Id
+            /// and List of string - wrong id
+            /// </summary>
             inputID = inputID.Trim(' ');
             string[] ID = inputID.Split(';', ',');
             List<string> wrongID = new List<string>();
@@ -36,7 +36,7 @@ namespace Client_for_textpars
 
             foreach (int x in integerID)
             {
-                if (x < 20 && x > -1)
+                if (x < 20 && x > 0)
                 {
                     if(!correctID.Contains(x)) correctID.Add(x);
                 }
@@ -55,6 +55,10 @@ namespace Client_for_textpars
         }
         internal static int getCountVowelLetter(string text)
         {
+            /// <summary>
+            /// Избавление от демокритики в тексте
+            /// </summary>
+
             var normalizedString = text.Normalize(NormalizationForm.FormD);
             var stringBuilder = new StringBuilder();
 
@@ -69,12 +73,13 @@ namespace Client_for_textpars
             string textNormalize = stringBuilder.ToString().Normalize(NormalizationForm.FormC);
 
             Regex regex = new Regex(@"[aeiouауоыиэяюёе]");
-            MatchCollection matches = regex.Matches(textNormalize);
+            MatchCollection vowels = regex.Matches(textNormalize);
 
+            // подчёт количества букв "ошибок"(при избавлении от демокритики буквы превратились в гласные)// не все случаи
             regex = new Regex(@"[й]");
             MatchCollection consonants = regex.Matches(text);
 
-            return matches.Count - consonants.Count;
+            return vowels.Count - consonants.Count;
         }
     }
 }
