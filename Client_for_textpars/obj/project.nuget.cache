@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8SeIjCiyoOAnPKFciHQXVHikqAioFW0MFSKr5/i9SZiuuYV2hU1W0Csm9uCrgs+fVon1WFK1XSqjxyBkWMRGcw==",
+  "dgSpecHash": "YV5jQtQadnWGGHyv3lhrYUJ12VzbSuN6xPjwJSkJuNeTPHXtof2rkYoocTs2KAaIeUo9FbIluvz6wMF3sRamsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\source\\repos\\Client_for_textpars\\Client_for_textpars\\Client_for_textpars.csproj",
+  "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\Client_for_textpars\\Client_for_textpars\\Client_for_textpars.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\materialdesigncolors\\2.0.3\\materialdesigncolors.2.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\materialdesignthemes\\4.2.1\\materialdesignthemes.4.2.1.nupkg.sha512",
